@@ -1,0 +1,52 @@
+version: "3"
+
+volumes:
+  db-data:
+
+services:
+  web:
+    build:
+      context: ./web/
+      args:
+        - TZ=${TZ}
+        - COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME}
+    volumes:
+      - ./web-data/:/var/www/html/
+      - ./web/php.ini:/usr/local/etc/php/php.ini
+    links:
+      - db
+    environment:
+      VIRTUAL_HOST: local.${COMPOSE_PROJECT_NAME}.com
+      CERT_NAME: cert
+      HTTPS_METHOD: noredirect
+      TZ: ${TZ}
+      COMPOSE_PROJECT_NAME: ${COMPOSE_PROJECT_NAME}
+  db:
+    image: mysql:5.7
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USERNAME: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+  pma:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASS}
+      VIRTUAL_HOST: pma-local.${COMPOSE_PROJECT_NAME}.com
+      CERT_NAME: cert
+      HTTPS_METHOD: noredirect
+    links:
+      - db
+  proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./proxy/keys/:/etc/nginx/certs
