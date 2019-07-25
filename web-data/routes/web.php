@@ -12,3 +12,6 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/user/login', 'UsersController@login');
+Route::get('/user/callback', 'UsersController@callback');
+Route::get('/ducks/create', 'DucksController@create');

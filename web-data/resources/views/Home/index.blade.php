@@ -25,7 +25,7 @@
             <p class="lead">自分語りはアヒルにやらせよう</p>
             <h1 class="welcome-title">duck-rack</h1>
             <p>
-                <a href="/login" class="btn btn-lg btn-success">
+                <a href="/user/login" class="btn btn-lg btn-success">
                     <i class="fa fa-twitter"></i> ログイン
                 </a>
             </p>
