@@ -48,4 +48,10 @@ class UsersController extends Controller
 
         return redirect('/ducks/create');
     }
+
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        return redirect('/');
+    }
 }

@@ -10,10 +10,11 @@
 
 </head>
 <body class="text-center">
-<div class="bg bg-top">
+<div class="bg">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="mb-auto">
             <h3 class="logo"><a href="/">duck-rack</a></h3>
+            <img class="twitter-icon" src="{{ $login_user->profile_image_url }}">
             <nav class="nav menu">
                 <a class="nav-link active" href="#">答える</a>
                 <a class="nav-link" href="#">見る</a>
@@ -22,13 +23,27 @@
         </header>
 
         <main role="main">
-            <p class="lead">自分語りはアヒルにやらせよう</p>
-            <h1 class="welcome-title">duck-rack</h1>
+            <div>
+                <div>
+                    <img class="duck-icon" src="/img/duck-icon.jpg">
+                </div>
+                <p class="lead">
+                    あなたの大好きなことはなんですか？
+                </p>
+            </div>
             <p>
-                <a href="/user/login" class="btn btn-lg btn-success">
-                    <i class="fa fa-twitter"></i> ログイン
-                </a>
+                <textarea class="form-control" rows="5"></textarea>
             </p>
+            <div class="">
+                <div>
+                    <a href="/user/login" class="btn btn-lg btn-danger pull-left answer-btn">
+                        わからない
+                    </a>
+                    <a href="/user/login" class="btn btn-lg btn-success pull-right answer-btn">
+                        答える
+                    </a>
+                </div>
+            </div>
         </main>
 
         <footer class="mt-auto">
