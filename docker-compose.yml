@@ -35,8 +35,8 @@ services:
     image: phpmyadmin/phpmyadmin:latest
     environment:
       PMA_HOST: db
-      PMA_USER: ${DB_USER}
-      PMA_PASSWORD: ${DB_PASS}
+      PMA_USER: root
+      PMA_PASSWORD: root
       VIRTUAL_HOST: pma-local.${COMPOSE_PROJECT_NAME}.com
       CERT_NAME: cert
       HTTPS_METHOD: noredirect

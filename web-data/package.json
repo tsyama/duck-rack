@@ -24,6 +24,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "font-awesome-scss": "^1.0.0"
+        "admin-lte": "^3.0.0-beta.2",
+        "font-awesome-scss": "^1.0.0",
+        "overlayscrollbars": "^1.9.0"
     }
 }
