@@ -10,6 +10,10 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const ROLE_NOTHING = 0;
+    const ROLE_GENERAL = 1;
+    const ROLE_ADMIN = 100;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -81,5 +85,14 @@ class User extends Authenticatable
             $this->access_token_secret
         );
         return $socialite_user;
+    }
+
+    /**
+     * 管理者かどうか
+     * @return bool
+     */
+    public function isAdmin() : bool
+    {
+        return $this->role === User::ROLE_ADMIN;
     }
 }

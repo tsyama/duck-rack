@@ -26,7 +26,12 @@
                         @foreach($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
+                                <td>
+                                    {{ $user->name }}
+                                    @if ($user->isAdmin())
+                                        <span class="badge badge-danger">管理者</span>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

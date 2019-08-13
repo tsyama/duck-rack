@@ -17,5 +17,7 @@ Route::get('/user/callback', 'UsersController@callback');
 Route::get('/ducks/create', 'DucksController@create');
 Route::get('/logout', 'UsersController@logout');
 
-Route::resource('/admin/questions', 'Admin\QuestionsController');
-Route::resource('/admin/users', 'Admin\UsersController');
+Route::group(['middleware' => ['auth', 'can:admin']], function () {
+    Route::resource('/admin/questions', 'Admin\QuestionsController');
+    Route::resource('/admin/users', 'Admin\UsersController');
+});
