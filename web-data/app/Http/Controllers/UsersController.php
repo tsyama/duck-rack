@@ -7,15 +7,14 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    const TWITTER_OAUTH_CALLBACK = 'http://local.duck-rack.com/user/callback/';
     public function login(Request $request)
     {
         $connection = new TwitterOAuth(
-            env('TWITTER_CONSUMER_KEY'),
-            env('TWITTER_CONSUMER_SECRET')
+            config('twitter.consumer_key'),
+            config('twitter.consumer_secret')
         );
         $request_token = $connection->oauth('oauth/request_token', [
-            'oauth_callback' => self::TWITTER_OAUTH_CALLBACK
+            'oauth_callback' => config('twitter.oauth_callback'),
         ]);
 
         $request->session()->put('oauth_token', $request_token['oauth_token']);
@@ -35,8 +34,8 @@ class UsersController extends Controller
         }
 
         $connection = new TwitterOAuth(
-            env('TWITTER_CONSUMER_KEY'),
-            env('TWITTER_CONSUMER_SECRET'),
+            config('twitter.consumer_key'),
+            config('twitter.consumer_secret'),
             $request->session()->get('oauth_token'),
             $request->session()->get('oauth_token_secret')
         );

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>duck-rack | Dashboard</title>
+    <title>@yield('title') | duck-rack</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/css/admin.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -18,7 +18,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">質問一覧</h1>
+                        <h1 class="m-0 text-dark">@yield('title')</h1>
                     </div>
                 </div>
             </div>

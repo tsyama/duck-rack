@@ -15,9 +15,9 @@
         <header class="mb-auto">
             <h3 class="logo"><a href="/">duck-rack</a></h3>
             <nav class="nav menu">
-                <a class="nav-link active" href="#">答える</a>
-                <a class="nav-link" href="#">見る</a>
-                <a class="nav-link" href="#">設定</a>
+                <a class="nav-link duck-nav-menu active" href="#">答える</a>
+                <a class="nav-link duck-nav-menu" href="#">見る</a>
+                <a class="nav-link duck-nav-menu" href="#">設定</a>
             </nav>
         </header>
 

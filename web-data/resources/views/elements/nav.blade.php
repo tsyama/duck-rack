@@ -6,7 +6,7 @@
     </ul>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+            <a href="/logout" class="nav-link">
                 <i class="fa fa-sign-out"></i> ログアウト
             </a>
         </li>
