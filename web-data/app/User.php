@@ -45,11 +45,14 @@ class User extends Authenticatable
 
     public function answers()
     {
-        $this->hasMany('answers');
+        $this->hasMany('\App\Answer');
     }
 
     public function getNotAnsweredQuestion(){
-        $question = Question::inRandomOrder()
+        $question = Question::whereDoesntHave('answers', function ($query) {
+            $query->where('user_id', $this->id);
+        })
+            ->inRandomOrder()
             ->first();
         return $question;
     }
