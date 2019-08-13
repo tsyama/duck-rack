@@ -2,55 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use Abraham\TwitterOAuth\TwitterOAuth;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class UsersController extends Controller
 {
-    public function login(Request $request)
+    public function login()
     {
-        $connection = new TwitterOAuth(
-            config('twitter.consumer_key'),
-            config('twitter.consumer_secret')
-        );
-        $request_token = $connection->oauth('oauth/request_token', [
-            'oauth_callback' => config('twitter.oauth_callback'),
-        ]);
-
-        $request->session()->put('oauth_token', $request_token['oauth_token']);
-        $request->session()->put('oauth_token_secret', $request_token['oauth_token_secret']);
-
-        $url = $connection->url('oauth/authenticate', [
-            'oauth_token' => $request_token['oauth_token']
-        ]);
-
-        return redirect($url);
+        if (Auth::user()) {
+            return redirect('/ducks/create');
+        }
+        return Socialite::driver('twitter')->redirect();
     }
 
-    public function callback(Request $request)
+    public function callback()
     {
-        if ($request->oauth_token !== $request->session()->get('oauth_token')) {
+        if (!$socialite_user = Socialite::driver('twitter')->user()) {
             abort(403);
         }
-
-        $connection = new TwitterOAuth(
-            config('twitter.consumer_key'),
-            config('twitter.consumer_secret'),
-            $request->session()->get('oauth_token'),
-            $request->session()->get('oauth_token_secret')
-        );
-
-        $access_token = $connection->oauth('oauth/access_token', [
-            'oauth_verifier' => $request->oauth_verifier
-        ]);
-        $request->session()->put('access_token', $access_token);
+        $user = User::getUserFromSocialite($socialite_user);
+        Auth::login($user);
 
         return redirect('/ducks/create');
     }
 
     public function logout(Request $request)
     {
-        $request->session()->flush();
+        Auth::logout();
         return redirect('/');
     }
 }
