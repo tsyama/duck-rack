@@ -13,6 +13,8 @@ class DucksController extends Controller
             return redirect('/logout');
         }
 
-        return view('Ducks/create', ['login_user' => $login_user]);
+        $question = $login_user->getNotAnsweredQuestion();
+
+        return view('Ducks/create', compact('login_user', 'question'));
     }
 }

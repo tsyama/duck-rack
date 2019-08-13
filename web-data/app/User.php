@@ -43,6 +43,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function answers()
+    {
+        $this->hasMany('answers');
+    }
+
+    public function getNotAnsweredQuestion(){
+        $question = Question::inRandomOrder()
+            ->first();
+        return $question;
+    }
+
     /**
      * SocialiteユーザーエンティティからUserエンティティを生成する。
      * すでにアカウントがある場合はfind, ない場合はcreateする。

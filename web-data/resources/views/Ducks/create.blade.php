@@ -23,27 +23,29 @@
         </header>
 
         <main role="main">
-            <div>
+            {{ Form::open(['url' => '/answers/', 'method' => 'POST']) }}
+                {{ csrf_field() }}
                 <div>
-                    <img class="duck-icon" src="/img/duck-icon.jpg">
+                    <div>
+                        <img class="duck-icon" src="/img/duck-icon.jpg">
+                    </div>
+                    <p class="lead">
+                        {{ $question->body }}
+                    </p>
                 </div>
-                <p class="lead">
-                    あなたの大好きなことはなんですか？
+                <p>
+                    <textarea name="body" class="form-control" rows="5"></textarea>
                 </p>
-            </div>
-            <p>
-                <textarea class="form-control" rows="5"></textarea>
-            </p>
-            <div class="">
                 <div>
-                    <a href="/user/login" class="btn btn-lg btn-danger pull-left answer-btn">
-                        わからない
-                    </a>
-                    <a href="/user/login" class="btn btn-lg btn-success pull-right answer-btn">
-                        答える
-                    </a>
+                    <div>
+                        <a href="/user/login" class="btn btn-lg btn-danger pull-left answer-btn">
+                            わからない
+                        </a>
+                        <button type="submit" class="btn btn-lg btn-success pull-right answer-btn">答える</button>
+                    </div>
                 </div>
-            </div>
+                <input type="hidden" name="question_id" value="{{ $question->id }}">
+            {{ Form::close() }}
         </main>
 
         <footer class="mt-auto">
