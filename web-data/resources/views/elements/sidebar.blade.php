@@ -11,13 +11,13 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header">Dashboard</li>
                 <li class="nav-item">
-                    <a href="/admin/questions" class="nav-link active">
+                    <a href="/admin/questions" class="nav-link @if(request()->is('admin/questions*')) active @endif">
                         <i class="nav-icon fa fa-circle text-info"></i>
                         <p>質問</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/admin/users" class="nav-link @if(request()->is('admin/users*')) active @endif">
                         <i class="nav-icon fa fa-circle text-info"></i>
                         <p>ユーザー</p>
                     </a>
