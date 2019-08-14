@@ -13515,15 +13515,15 @@ a:hover {
   color: #fff;
 }
 
-html,
-body {
+html.full-height,
+body.full-height {
   height: 100%;
 }
 
 body {
   display: flex;
   color: #fff;
-  background-color: #555;
+  background-color: rgba(0, 0, 0, 0.7);
   text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
   box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
 }
@@ -13535,12 +13535,22 @@ body {
   display: flex;
 }
 
+.bg-scroll {
+  width: 100%;
+  background-size: cover;
+  display: flex;
+}
+
 .bg-top {
   background-image: url(/images/background.jpg?25f0dcad1599af0596beecfc100fa8a0);
 }
 
-.bg::before {
+.bg:before {
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+.bg::before,
+.bg-scroll:before {
   position: absolute;
   top: 0;
   left: 0;
@@ -13557,7 +13567,13 @@ body {
 }
 
 header {
+  padding: 10px;
   margin-bottom: 2px;
+  background-color: #4b4b4b;
+}
+
+header.header-home {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .logo {
@@ -13619,7 +13635,21 @@ header {
   width: 150px;
 }
 
+.answer-row {
+  margin-bottom: 20px;
+}
+
+.answer-icon {
+  max-width: 30px;
+  max-height: 30px;
+}
+
+.answer-question {
+  margin: 0;
+}
+
 footer {
+  padding-top: 50px;
   color: rgba(255, 255, 255, 0.5);
 }
 

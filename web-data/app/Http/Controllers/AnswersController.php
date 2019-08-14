@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AnswersController extends Controller
 {
+    public function index()
+    {
+        $login_user = Auth::user();
+        return view('Answers/index', compact('login_user'));
+    }
+
     public function create()
     {
         $login_user = Auth::user();

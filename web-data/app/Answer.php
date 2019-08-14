@@ -10,4 +10,9 @@ class Answer extends Model
         'body',
         'question_id',
     ];
+
+    public function question()
+    {
+        return $this->belongsTo('\App\Question');
+    }
 }
