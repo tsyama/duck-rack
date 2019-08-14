@@ -12,7 +12,7 @@ class UsersController extends Controller
     public function login()
     {
         if (Auth::user()) {
-            return redirect('/ducks/create');
+            return redirect('/answers/create');
         }
         return Socialite::driver('twitter')->redirect();
     }
@@ -25,7 +25,7 @@ class UsersController extends Controller
         $user = User::getUserFromSocialite($socialite_user);
         Auth::login($user);
 
-        return redirect('/ducks/create');
+        return redirect('/answers/create');
     }
 
     public function logout(Request $request)

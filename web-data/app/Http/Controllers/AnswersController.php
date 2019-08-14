@@ -8,6 +8,18 @@ use Illuminate\Support\Facades\Auth;
 
 class AnswersController extends Controller
 {
+    public function create()
+    {
+        $login_user = Auth::user();
+        if (!isset($login_user->id)) {
+            return redirect('/logout');
+        }
+
+        $question = $login_user->getNotAnsweredQuestion();
+
+        return view('Answers/create', compact('login_user', 'question'));
+    }
+
     public function store(Request $request)
     {
         $answer = new Answer();
@@ -17,6 +29,6 @@ class AnswersController extends Controller
             abort(500);
         }
 
-        return redirect('/ducks/create');
+        return redirect('/answers/create');
     }
 }
