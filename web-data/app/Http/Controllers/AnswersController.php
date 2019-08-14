@@ -28,13 +28,19 @@ class AnswersController extends Controller
 
     public function store(Request $request)
     {
-        $answer = new Answer();
-        $answer->fill($request->all());
-        $answer->user_id = Auth::user()->id;
-        if (!$answer->save()) {
+        $login_user = Auth::user();
+        if (!$login_user->answerQuestion($request->all())) {
             abort(500);
         }
 
         return redirect('/answers/create');
+    }
+
+    public function preview(Answer $answer)
+    {
+        if (!$answer->canPreview()) {
+            abort(403);
+        }
+        return view('Answers/preview', compact('answer'));
     }
 }

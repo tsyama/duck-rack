@@ -58,6 +58,20 @@ class User extends Authenticatable
     }
 
     /**
+     * 質問への回答を登録する
+     * @param array $params
+     * @return bool
+     */
+    public function answerQuestion(array $params) : bool
+    {
+        $answer = new Answer();
+        $answer->fill($params);
+        $answer->user_id = $this->id;
+        $answer->tweet_enabled_flag = true;
+        return $answer->save();
+    }
+
+    /**
      * SocialiteユーザーエンティティからUserエンティティを生成する。
      * すでにアカウントがある場合はfind, ない場合はcreateする。
      * @param \Laravel\Socialite\One\User $socialite_user

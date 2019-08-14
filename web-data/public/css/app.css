@@ -13648,6 +13648,16 @@ header.header-home {
   margin: 0;
 }
 
+.answer-card {
+  background-color: #85ff49;
+  color: #000000;
+  text-shadow: none;
+}
+
+.answer-card p {
+  margin: 10px;
+}
+
 footer {
   padding-top: 50px;
   color: rgba(255, 255, 255, 0.5);

@@ -14,6 +14,7 @@
 Route::get('/', 'HomeController@index');
 Route::get('/user/login', 'UsersController@login');
 Route::get('/user/callback', 'UsersController@callback');
+Route::get('/answers/{answer}/preview', 'AnswersController@preview');
 
 Route::group(['middleware' => ['auth', 'can:general']], function() {
     Route::resource('/answers', 'AnswersController');

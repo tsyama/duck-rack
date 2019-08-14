@@ -12,7 +12,9 @@
         </div>
         <div class="row answer-row">
             <div class="col-9 offset-1">
-                <textarea class="form-control">{{ $answer->body }}</textarea>
+                <div class="card answer-card">
+                    <p>{!! nl2br(htmlspecialchars($answer->body)) !!}</p>
+                </div>
             </div>
             <div class="col-2">
                 <img class="duck-icon answer-icon img-fluid mx-auto" src="{{ $login_user->avatar }}">

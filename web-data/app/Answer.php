@@ -49,11 +49,24 @@ class Answer extends Model
         );
 
         $tweet = view('tweet.body', ['answer' => $this]);
-        $twitter->post('statuses/update', [
+        $response = $twitter->post('statuses/update', [
             'status' => $tweet->render(),
         ]);
 
         if ($twitter->getLastHttpCode() !== 200) {
+            dump($response);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 権限のない人でも閲覧できるかどうか
+     * @return bool
+     */
+    public function canPreview() : bool
+    {
+        if (!$this->tweet_enabled_flag) {
             return false;
         }
         return true;
