@@ -5,7 +5,7 @@
         <nav class="nav menu">
             <a class="nav-link duck-nav-menu @if(request()->is('answers/create*')) active @endif" href="/answers/create">答える</a>
             <a class="nav-link duck-nav-menu @if(request()->is('answers')) active @endif " href="/answers">見る</a>
-            <a class="nav-link duck-nav-menu" href="#">設定</a>
+            <a class="nav-link duck-nav-menu @if(request()->is('users/config')) active @endif" href="/users/config">設定</a>
         </nav>
     @else
         <nav class="nav menu">

@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'nickname',
         'avatar',
+        'tweet_enabled_flag',
     ];
 
     /**

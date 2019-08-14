@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Answer;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class TweetAnswers extends Command
 {
@@ -39,6 +40,10 @@ class TweetAnswers extends Command
     public function handle()
     {
         $answer = Answer::getAnswerCanTweet();
+        if (is_null($answer)) {
+            $this->info('No answer found.');
+            return;
+        }
         $answer->tweet();
     }
 }

@@ -3,7 +3,6 @@
 namespace App;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
-use GuzzleHttp\Exception\ServerException;
 use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
@@ -25,13 +24,19 @@ class Answer extends Model
 
     /**
      * ツイート可能な回答を取得する
-     * @return Answer
+     * @return Answer|null
      */
-    public static function getAnswerCanTweet() : Answer
+    public static function getAnswerCanTweet()
     {
-        return Answer::where('tweet_enabled_flag', true)
-            ->inRandomOrder()
-            ->first();
+        $answers = Answer::where('tweet_enabled_flag', true)
+            ->whereHas('user', function ($query) {
+                $query->where('tweet_enabled_flag', true);
+            })
+            ->inRandomOrder();
+        if (is_null($answers)) {
+            return null;
+        }
+        return $answers->first();
     }
 
     /**

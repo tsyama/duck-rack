@@ -18,6 +18,8 @@ Route::get('/answers/{answer}/preview', 'AnswersController@preview');
 
 Route::group(['middleware' => ['auth', 'can:general']], function() {
     Route::resource('/answers', 'AnswersController');
+    Route::get('/users/config', 'UsersController@config');
+    Route::post('/users/config', 'UsersController@configUpdate');
     Route::get('/logout', 'UsersController@logout');
 });
 
