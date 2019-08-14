@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function answers()
     {
-        return $this->hasMany('\App\Answer');
+        return $this->hasMany('\App\Answer')->orderBy('created_at', 'desc');
     }
 
     public function getNotAnsweredQuestion(){
