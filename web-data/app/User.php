@@ -83,6 +83,7 @@ class User extends Authenticatable
         $user->id = $socialite_user->id;
         $user->access_token = $socialite_user->token;
         $user->access_token_secret = $socialite_user->tokenSecret;
+        $user->role = self::ROLE_GENERAL;
         $user->save();
 
         return $user;

@@ -16,7 +16,7 @@
     </p>
     <div>
         <div>
-            <a href="/user/login" class="btn btn-lg btn-danger pull-left answer-btn">
+            <a href="/answers/create" class="btn btn-lg btn-danger pull-left answer-btn">
                 わからない
             </a>
             <button type="submit" class="btn btn-lg btn-success pull-right answer-btn">答える</button>

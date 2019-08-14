@@ -14,8 +14,11 @@
 Route::get('/', 'HomeController@index');
 Route::get('/user/login', 'UsersController@login');
 Route::get('/user/callback', 'UsersController@callback');
-Route::resource('/answers', 'AnswersController');
-Route::get('/logout', 'UsersController@logout');
+
+Route::group(['middleware' => ['auth', 'can:general']], function() {
+    Route::resource('/answers', 'AnswersController');
+    Route::get('/logout', 'UsersController@logout');
+});
 
 Route::group(['middleware' => ['auth', 'can:admin']], function () {
     Route::resource('/admin/questions', 'Admin\QuestionsController');
