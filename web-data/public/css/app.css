@@ -13649,9 +13649,14 @@ header.header-home {
 }
 
 .answer-card {
-  background-color: #85ff49;
-  color: #000000;
+  background-color: #555;
+  color: #FFF;
   text-shadow: none;
+}
+
+.answer-card.active {
+  background-color: #85ff49;
+  color: #000;
 }
 
 .answer-card p {

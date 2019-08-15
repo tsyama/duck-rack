@@ -43,4 +43,13 @@ class AnswersController extends Controller
         }
         return view('Answers/preview', compact('answer'));
     }
+
+    public function config(Request $request, Answer $answer)
+    {
+        $answer->fill($request->all());
+        if (!$answer->save()) {
+            abort(500);
+        }
+        return redirect('/answers');
+    }
 }

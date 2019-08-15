@@ -10,6 +10,7 @@ class Answer extends Model
     protected $fillable = [
         'body',
         'question_id',
+        'tweet_enabled_flag',
     ];
 
     public function question()
