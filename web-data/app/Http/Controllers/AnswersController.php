@@ -52,4 +52,12 @@ class AnswersController extends Controller
         }
         return redirect('/answers');
     }
+
+    public function destroy(Answer $answer)
+    {
+        if (!$answer->delete()) {
+            abort(500);
+        }
+        return redirect('/answers');
+    }
 }

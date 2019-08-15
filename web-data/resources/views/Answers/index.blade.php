@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6"></div>
+                        <div class="col-3"></div>
                         <div class="col-6">
                             {{ Form::open(['url' => '/answers/' . $answer->id . '/config', 'method' => 'POST']) }}
                                 @if($answer->tweet_enabled_flag)
@@ -29,6 +29,11 @@
                                     <input type="hidden" name="tweet_enabled_flag" value="1">
                                     <button type="submit" class="btn btn-sm btn-outline-primary btn-block">ツイート許可</button>
                                 @endif
+                            {{ Form::close() }}
+                        </div>
+                        <div class="col-3">
+                            {{ Form::open(['url' => '/answers/' . $answer->id, 'method' => 'DELETE']) }}
+                                <button type="submit" class="btn btn-danger btn-sm btn-block" onclick="if (!confirm('回答を削除しますか？')) return false;"><i class="fa fa-remove"></i></button>
                             {{ Form::close() }}
                         </div>
                     </div>
