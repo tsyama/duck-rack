@@ -11,7 +11,7 @@
     </div>
     <div class="row answer-row">
         <div class="col-9 offset-1">
-            <div class="card answer-card">
+            <div class="card answer-card active">
                 <div class="row" style="padding: 10px">
                     <div class="col-6">
                         @if($login_user->tweet_enabled_flag)
