@@ -46,6 +46,9 @@ class AnswersController extends Controller
 
     public function config(Request $request, Answer $answer)
     {
+        if (!Auth::user()->hasAnswer($answer)) {
+            abort(403);
+        }
         $answer->fill($request->all());
         if (!$answer->save()) {
             abort(500);
@@ -55,6 +58,9 @@ class AnswersController extends Controller
 
     public function destroy(Answer $answer)
     {
+        if (!Auth::user()->hasAnswer($answer)) {
+            abort(403);
+        }
         if (!$answer->delete()) {
             abort(500);
         }

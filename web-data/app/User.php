@@ -125,4 +125,17 @@ class User extends Authenticatable
     {
         return $this->role === User::ROLE_ADMIN;
     }
+
+    /**
+     * 回答に紐づくユーザーかどうか
+     * @param Answer $answer
+     * @return bool
+     */
+    public function hasAnswer(Answer $answer) : bool
+    {
+        if ($answer->user->id === $this->id) {
+            return true;
+        }
+        return false;
+    }
 }
