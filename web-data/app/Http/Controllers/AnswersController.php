@@ -36,6 +36,27 @@ class AnswersController extends Controller
         return redirect('/answers/create');
     }
 
+    public function edit(Answer $answer)
+    {
+        if (!$answer->canPreview()) {
+            abort(403);
+        }
+        $login_user = Auth::user();
+        return view('Answers/edit', compact('answer', 'login_user'));
+    }
+
+    public function update(Answer $answer, Request $request)
+    {
+        if (!$answer->canPreview()) {
+            abort(403);
+        }
+        $answer->fill($request->all());
+        if (!$answer->save()) {
+            abort(500);
+        }
+        return redirect('/answers');
+    }
+
     public function preview(Answer $answer)
     {
         if (!$answer->canPreview()) {
