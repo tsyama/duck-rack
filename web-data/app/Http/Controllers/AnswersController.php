@@ -38,16 +38,17 @@ class AnswersController extends Controller
 
     public function edit(Answer $answer)
     {
-        if (!$answer->canPreview()) {
+        $login_user = Auth::user();
+        if (!($login_user->canEditAnswer($answer))) {
             abort(403);
         }
-        $login_user = Auth::user();
         return view('Answers/edit', compact('answer', 'login_user'));
     }
 
     public function update(Answer $answer, Request $request)
     {
-        if (!$answer->canPreview()) {
+        $login_user = Auth::user();
+        if (!($login_user->canEditAnswer($answer))) {
             abort(403);
         }
         $answer->fill($request->all());

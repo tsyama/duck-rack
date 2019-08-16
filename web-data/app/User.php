@@ -127,6 +127,16 @@ class User extends Authenticatable
     }
 
     /**
+     * 回答を編集できるかどうか
+     * @param Answer $answer
+     * @return bool
+     */
+    public function canEditAnswer(Answer $answer) : bool
+    {
+        return $this->hasAnswer($answer);
+    }
+
+    /**
      * 回答に紐づくユーザーかどうか
      * @param Answer $answer
      * @return bool

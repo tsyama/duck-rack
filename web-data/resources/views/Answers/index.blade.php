@@ -7,7 +7,7 @@
                 <img class="duck-icon answer-icon img-fluid mx-auto" src="/img/duck-icon.jpg">
             </div>
             <div class="col-9 d-flex align-items-center">
-                <p class="answer-question">（ツイートが許可されていません！ツイートを許可するには「設定」から変更してください）</p>
+                <p class="answer-question font-weight-bold">ツイートが許可されていません！<br>ツイートを許可するには「設定」から変更してください</p>
             </div>
         </div>
     @endif
