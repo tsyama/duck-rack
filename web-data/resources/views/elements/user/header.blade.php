@@ -1,4 +1,4 @@
-<header class="mb-auto sticky-top">
+<header class="mb-auto sticky-top @if(request()->is('/')) header-home @endif">
     <h3 class="logo"><a href="/">duck-rack</a></h3>
     @if(isset($login_user))
         <img class="twitter-icon" src="{{ $login_user->avatar }}" alt="{{ $login_user->name }}">
@@ -9,7 +9,7 @@
         </nav>
     @else
         <nav class="nav menu">
-            <a class="nav-link duck-nav-menu" href="/user/login">はじめる</a>
+            <a class="nav-link duck-nav-menu" href="/user/login">ログイン</a>
         </nav>
     @endif
 </header>
