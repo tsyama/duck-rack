@@ -67,6 +67,21 @@ class Answer extends Model
     }
 
     /**
+     * 回答がツイート可能かどうか
+     * @return bool
+     */
+    public function canTweet() : bool
+    {
+        if (!$this->tweet_enabled_flag) {
+            return false;
+        }
+        if (!$this->user->tweet_enabled_flag) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * 権限のない人でも閲覧できるかどうか
      * @return bool
      */

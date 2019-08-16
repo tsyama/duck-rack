@@ -138,4 +138,13 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    /**
+     * ユーザーがツイート可能かどうか
+     * @return bool
+     */
+    public function canTweet() : bool
+    {
+        return $this->tweet_enabled_flag;
+    }
 }
