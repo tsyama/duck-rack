@@ -66,6 +66,7 @@ class Answer extends Model
         }
         $this->last_tweeted_at = Carbon::now();
         $this->save();
+        $this->user->updateLastTweetedAt();
         return true;
     }
 
@@ -75,13 +76,25 @@ class Answer extends Model
      */
     public function canTweet() : bool
     {
+        if (!$this->isConfiguredTweetEnabled()) {
+            return false;
+        }
+        if($this->wasRecentlyTweeted()) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * ツイート許可設定になっているかどうか
+     * @return bool
+     */
+    public function isConfiguredTweetEnabled() : bool
+    {
         if (!$this->tweet_enabled_flag) {
             return false;
         }
         if (!$this->user->tweet_enabled_flag) {
-            return false;
-        }
-        if($this->wasRecentlyTweeted()) {
             return false;
         }
         return true;
@@ -102,6 +115,7 @@ class Answer extends Model
     /**
      * 指定した期間内にツイートされているかどうか
      * @return bool
+     * @throws \Exception
      */
     protected function wasRecentlyTweeted() : bool
     {

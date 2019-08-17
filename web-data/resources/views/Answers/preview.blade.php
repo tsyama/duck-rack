@@ -11,7 +11,7 @@
     </div>
     <div class="row answer-row">
         <div class="col-9 offset-1">
-            <div class="card answer-card @if($answer->canTweet()) active @endif">
+            <div class="card answer-card @if($answer->isConfiguredTweetEnabled()) active @endif">
                 <p>{!! nl2br(htmlspecialchars($answer->body)) !!}</p>
             </div>
         </div>

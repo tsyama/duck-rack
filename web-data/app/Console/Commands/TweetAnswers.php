@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 class TweetAnswers extends Command
 {
+    const USERS_COUNT = 100;
     /**
      * The name and signature of the console command.
      *
@@ -40,7 +41,7 @@ class TweetAnswers extends Command
      */
     public function handle()
     {
-        $users = User::getListCanTweet();
+        $users = User::getListCanTweet(self::USERS_COUNT);
         foreach ($users as $user) {
             $this->line('[user_id] ' . $user->id);
             $answer = $user->choiceAnswerCanTweet();

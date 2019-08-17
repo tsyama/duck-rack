@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -163,9 +164,11 @@ class User extends Authenticatable
      * ツイート可能なユーザーのリストを取得
      * @return Collection
      */
-    public static function getListCanTweet() : Collection
+    public static function getListCanTweet($count = 100) : Collection
     {
         $users = self::where('tweet_enabled_flag', true)
+            ->orderBy('last_tweeted_at', 'asc')
+            ->limit($count)
             ->get();
         return $users;
     }
@@ -186,5 +189,14 @@ class User extends Authenticatable
 
         $answer = $answers->random();
         return $answer;
+    }
+
+    /**
+     * @return bool
+     */
+    public function updateLastTweetedAt() : bool
+    {
+        $this->last_tweeted_at = Carbon::now();
+        return $this->save();
     }
 }

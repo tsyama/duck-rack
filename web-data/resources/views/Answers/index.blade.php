@@ -22,7 +22,7 @@
         </div>
         <div class="row answer-row">
             <div class="col-9 offset-1">
-                <div class="card answer-card @if($answer->canTweet()) active @endif">
+                <div class="card answer-card @if($answer->isConfiguredTweetEnabled()) active @endif">
                     <div class="row">
                         <div class="col-12">
                             <p>{!! nl2br(htmlspecialchars($answer->body)) !!}</p>
@@ -32,7 +32,7 @@
                         <div class="col-6">
                             @if($answer->user->canTweet())
                                 {{ Form::open(['url' => '/answers/' . $answer->id . '/config', 'method' => 'POST']) }}
-                                    @if($answer->canTweet())
+                                    @if($answer->isConfiguredTweetEnabled())
                                         <input type="hidden" name="tweet_enabled_flag" value="0">
                                         <button type="submit" class="btn btn-sm btn-primary btn-block">ツイートしない</button>
                                     @else
