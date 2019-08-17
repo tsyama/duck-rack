@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Socialite\Facades\Socialite;
@@ -156,5 +157,34 @@ class User extends Authenticatable
     public function canTweet() : bool
     {
         return $this->tweet_enabled_flag;
+    }
+
+    /**
+     * ツイート可能なユーザーのリストを取得
+     * @return Collection
+     */
+    public static function getListCanTweet() : Collection
+    {
+        $users = self::where('tweet_enabled_flag', true)
+            ->get();
+        return $users;
+    }
+
+    /**
+     * ツイート対象の回答をひとつ選ぶ
+     * @return Answer|null
+     */
+    public function choiceAnswerCanTweet()
+    {
+        $answers = $this->answers->filter(function ($value) {
+            return $value->canTweet();
+        });
+
+        if (!$answers->count()) {
+            return null;
+        }
+
+        $answer = $answers->random();
+        return $answer;
     }
 }

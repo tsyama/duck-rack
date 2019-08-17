@@ -3,6 +3,7 @@
 namespace App;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
@@ -63,6 +64,8 @@ class Answer extends Model
             dump($response);
             return false;
         }
+        $this->last_tweeted_at = Carbon::now();
+        $this->save();
         return true;
     }
 
@@ -78,6 +81,9 @@ class Answer extends Model
         if (!$this->user->tweet_enabled_flag) {
             return false;
         }
+        if($this->wasRecentlyTweeted()) {
+            return false;
+        }
         return true;
     }
 
@@ -91,5 +97,21 @@ class Answer extends Model
             return false;
         }
         return true;
+    }
+
+    /**
+     * 指定した期間内にツイートされているかどうか
+     * @return bool
+     */
+    protected function wasRecentlyTweeted() : bool
+    {
+        if (is_null($this->last_tweeted_at)) {
+            return false;
+        }
+        $lastTweetedDatetime = new Carbon($this->last_tweeted_at);
+        if ($lastTweetedDatetime->gt(Carbon::now()->subDay())) {
+            return true;
+        }
+        return false;
     }
 }

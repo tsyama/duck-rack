@@ -52,6 +52,15 @@
                         </div>
                     </div>
                 </div>
+                @if($answer->last_tweeted_at)
+                    <div class="row">
+                        <div class="col-12">
+                            <p class=" pull-right">
+                                最終ツイート：{{ $answer->last_tweeted_at }}
+                            </p>
+                        </div>
+                    </div>
+                @endif
             </div>
             <div class="col-2">
                 <img class="duck-icon answer-icon img-fluid mx-auto" src="{{ $login_user->avatar }}">

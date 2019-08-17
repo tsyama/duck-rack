@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Answer;
+use App\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
@@ -39,11 +40,19 @@ class TweetAnswers extends Command
      */
     public function handle()
     {
-        $answer = Answer::getAnswerCanTweet();
-        if (is_null($answer)) {
-            $this->info('No answer found.');
-            return;
+        $users = User::getListCanTweet();
+        foreach ($users as $user) {
+            $this->line('[user_id] ' . $user->id);
+            $answer = $user->choiceAnswerCanTweet();
+            if (!$answer) {
+                $this->info('  No answer found.');
+                continue;
+            }
+            if ($answer->tweet()) {
+                $this->info('  Tweet success!');
+                $this->line('   [answer_id] ' . $answer->id);
+            }
         }
-        $answer->tweet();
+        return true;
     }
 }
