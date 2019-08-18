@@ -2,15 +2,14 @@
 
 @section('content')
     <div class="row answer-row">
-        <div class="col-2 d-flex align-items-center">
-            <img class="duck-icon answer-icon img-fluid mx-auto" src="/img/duck-icon.jpg">
-        </div>
-        <div class="col-9 d-flex align-items-center">
+        <div class="col-11 d-flex align-items-center">
+            <img class="duck-icon answer-icon" src="/img/duck-icon.jpg">
             <p class="answer-question">回答を自動的にツイートしますか？</p>
         </div>
     </div>
     <div class="row answer-row">
-        <div class="col-9 offset-1">
+        <div class="col-11 offset-1">
+            <img class="duck-icon answer-icon pull-right" src="{{ $login_user->avatar }}">
             <div class="card answer-card active">
                 <div class="row" style="padding: 10px">
                     <div class="col-6">
@@ -35,9 +34,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-2">
-            <img class="duck-icon answer-icon img-fluid mx-auto" src="{{ $login_user->avatar }}">
         </div>
     </div>
 @endsection

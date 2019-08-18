@@ -3,25 +3,22 @@
 @section('content')
     @if(!$login_user->canTweet())
         <div class="row answer-row">
-            <div class="col-2 d-flex align-items-center">
-                <img class="duck-icon answer-icon img-fluid mx-auto" src="/img/duck-icon.jpg">
-            </div>
-            <div class="col-9 d-flex align-items-center">
+            <div class="col-11 d-flex align-items-center">
+                <img class="duck-icon answer-icon" src="/img/duck-icon.jpg">
                 <p class="answer-question font-weight-bold">ツイートが許可されていません！<br>ツイートを許可するには「設定」から変更してください</p>
             </div>
         </div>
     @endif
     @foreach($login_user->answers as $answer)
         <div class="row answer-row">
-            <div class="col-2 d-flex align-items-center">
-                <img class="duck-icon answer-icon img-fluid mx-auto" src="/img/duck-icon.jpg">
-            </div>
-            <div class="col-9 d-flex align-items-center">
+            <div class="col-11 d-flex align-items-center">
+                <img class="duck-icon answer-icon" src="/img/duck-icon.jpg">
                 <p class="answer-question">{{ $answer->question->body }}</p>
             </div>
         </div>
         <div class="row answer-row">
-            <div class="col-9 offset-1">
+            <div class="col-11 offset-1">
+                <img class="duck-icon answer-icon pull-right" src="{{ $login_user->avatar }}">
                 <div class="card answer-card @if($answer->isConfiguredTweetEnabled()) active @endif">
                     <div class="row">
                         <div class="col-12">
@@ -61,9 +58,6 @@
                         </div>
                     </div>
                 @endif
-            </div>
-            <div class="col-2">
-                <img class="duck-icon answer-icon img-fluid mx-auto" src="{{ $login_user->avatar }}">
             </div>
         </div>
     @endforeach

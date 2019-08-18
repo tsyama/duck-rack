@@ -10,7 +10,7 @@
 </head>
 <body class="text-center">
 <div class="bg-scroll">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <div class="cover-container d-flex w-100 p-3 mx-auto flex-column">
         @yield('header', View::make('elements.user.header', ['login_user' => $login_user ?? null]))
 
         <main role="main">
