@@ -42,12 +42,14 @@
         </div>
     @endif
     {{ Form::close() }}
-    <div class="row answer-row" style="margin-top: 30px">
-        <div class="col-2 d-flex align-items-center">
-            <img class="duck-icon answer-icon img-fluid mx-auto" src="/img/duck-icon.jpg">
+    @if($login_user->answers->count())
+        <div class="row answer-row" style="margin-top: 30px">
+            <div class="col-2 d-flex align-items-center">
+                <img class="duck-icon answer-icon img-fluid mx-auto" src="/img/duck-icon.jpg">
+            </div>
+            <div class="col-9 d-flex align-items-center">
+                <p class="answer-question"><a href="/answers" class="btn-link">{{ $login_user->answers->count() }}件の質問</a>に答えてもらいました！</p>
+            </div>
         </div>
-        <div class="col-9 d-flex align-items-center">
-            <p class="answer-question"><a href="/answers" class="btn-link">{{ $login_user->answers->count() }}件の質問</a>に答えてもらいました！</p>
-        </div>
-    </div>
+    @endif
 @endsection
