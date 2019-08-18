@@ -1,5 +1,10 @@
-<header class="mb-auto sticky-top @if(request()->is('/')) header-home @endif">
-    <h3 class="logo"><a href="/">duck-rack</a></h3>
+<header class="mb-auto sticky-top @if(request()->is('/') || request()->is('about')) header-home @endif">
+    <h3 class="logo" style="font-size: 1.2rem">
+        <a href="/">duck-rack</a>
+        <a href="/about">
+            <i class="fa fa-question-circle"></i>
+        </a>
+    </h3>
     @if(isset($login_user))
         <img class="twitter-icon" src="{{ $login_user->avatar }}" alt="{{ $login_user->name }}">
         <nav class="nav menu">
